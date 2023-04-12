@@ -1,36 +1,26 @@
 import express from "express";
+import { usersRouter } from "./users/users.js";
 
 const port = 8080;
 const app = express();
 
-app.get("/hello", (req, resp) => {
-	// resp.status(201).json({ success: true });
-	// resp.download("/test.pdf", "teeeeeeeeeest.pdf");
-	// resp.redirect(301, "https://google.com");
-	// resp.append("Warning", "code");
-	// resp.type("application/json");
-
-	// resp.cookie("token", "sdfsdfs", {
-	// 	domain: "",
-	// 	path: "/",
-	// 	secure: true,
-	// 	maxAge: 60000
-	// });
-
-	// resp.clearCookie("token");
-
-	// resp.links({
-	// 	next: "ssafas",
-
-	// });
-
-	// resp.send("Привет");
-	// resp.set("Content-Type", "text/html");
-
-	resp.sendStatus(404).end();
-
+app.use((req, res, next) => {
+	console.log("Время ", Date.now());
+	next();
 });
+
+app.get("/hello", (req, resp) => {
+	throw new Error("new Error");
+});
+
+app.use("/users", usersRouter);
+
+app.use((err, req, res, next) => {
+	console.log(err.message);
+	res.status(500).send(err.message);
+});
+
 
 app.listen(port, () => {
 	console.log(`Сервер запущен на http://localhost:${port}`);
-});
+}); 
