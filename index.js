@@ -3,30 +3,33 @@ import express from "express";
 const port = 8080;
 const app = express();
 
-app.all("/hello", (req, resp, next) => {
-	console.log("All");
-	next();
+app.get("/hello", (req, resp) => {
+	// resp.status(201).json({ success: true });
+	// resp.download("/test.pdf", "teeeeeeeeeest.pdf");
+	// resp.redirect(301, "https://google.com");
+	// resp.append("Warning", "code");
+	// resp.type("application/json");
+
+	// resp.cookie("token", "sdfsdfs", {
+	// 	domain: "",
+	// 	path: "/",
+	// 	secure: true,
+	// 	maxAge: 60000
+	// });
+
+	// resp.clearCookie("token");
+
+	// resp.links({
+	// 	next: "ssafas",
+
+	// });
+
+	// resp.send("Привет");
+	// resp.set("Content-Type", "text/html");
+
+	resp.sendStatus(404).end();
+
 });
-
-const cb = (req, resp, next) => {
-	console.log("CB");
-	next();
-};
-
-// app.route("/user")
-// 	.get("/hello", cb, (req, resp) => {
-// 		resp.send("Hello World!!!");
-// 	}).post("/hello", (req, resp) => {
-// 		resp.send("Hello World by POST");
-// 	});
-
-app.route('/user')
-	.get((req, res) => {
-		res.send("Hello World by GET");
-	})
-	.post((req, resp) => {
-		resp.send("Hello World by POST");
-	});
 
 app.listen(port, () => {
 	console.log(`Сервер запущен на http://localhost:${port}`);
