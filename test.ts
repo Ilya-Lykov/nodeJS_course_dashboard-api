@@ -1,27 +1,22 @@
-let universalID: number | string = 5;
+type coord = { lat: number; long: number };
 
-console.log(universalID);
-
-printId(universalID);
-
-universalID = "sdf";
-
-printId(universalID);
-
-function printId(id: number | string) {
-	if (typeof id == "number") {
-		console.log("Number:" + id);
-	} else {
-		console.log(id.toUpperCase());
-	}
+interface ICoord {
+	lat: number;
+	long: number;
 }
 
-function helloUser(user: string | string[]) {
-	if (Array.isArray(user)) {
-		user.forEach((user, index, arr) => {
-			console.log(user);
-		});
-	} else {
-		console.log(user + "hi");
-	}
+type ID = number | string;
+
+function compute(coord: ICoord) {}
+
+interface Dog {
+	name: string;
 }
+interface Dog {
+	tail: boolean;
+}
+
+const dog: Dog = {
+	name: "fsdf",
+	tail: true,
+};
