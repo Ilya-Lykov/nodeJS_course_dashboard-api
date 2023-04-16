@@ -1,18 +1,19 @@
-enum Direction {
-	Left,
-	Right,
+interface HasLegth {
+	length: number;
 }
 
-function move(direction: Direction) {
-	switch (direction) {
-		case Direction.Left:
-			return -1;
-		case Direction.Right:
-			return 1;
-	}
+function log<T extends HasLegth, K>(obj: T, arr: K[]): T {
+	obj.length;
+	console.log(obj);
+	return obj;
 }
-const enum Direction2 {
-	Up,
-	Down,
+
+interface IUser {
+	name: string;
+	age?: number;
+	bid: <T>(sum: T) => boolean;
 }
-let myDirection = Direction2.Up;
+
+function bid<T>(sum: T): boolean {
+	return true;
+}
