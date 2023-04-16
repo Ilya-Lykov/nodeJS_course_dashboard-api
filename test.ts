@@ -1,18 +1,27 @@
-let a: number = 5;
-let b: string = "4";
+let universalID: number | string = 5;
 
-let c: number = a + Number(b);
+console.log(universalID);
 
-let names: string[] = ["qweqw", "qweqwe"];
+printId(universalID);
 
-let tup: [number, string] = [2, "asdas"];
+universalID = "sdf";
 
-let e: any = 3;
+printId(universalID);
 
-function greet(name: string): string {
-	return name + "HI";
+function printId(id: number | string) {
+	if (typeof id == "number") {
+		console.log("Number:" + id);
+	} else {
+		console.log(id.toUpperCase());
+	}
 }
 
-names.map((x: string) => x);
-
-function coord(coord: { lat: number; long: number });
+function helloUser(user: string | string[]) {
+	if (Array.isArray(user)) {
+		user.forEach((user, index, arr) => {
+			console.log(user);
+		});
+	} else {
+		console.log(user + "hi");
+	}
+}
