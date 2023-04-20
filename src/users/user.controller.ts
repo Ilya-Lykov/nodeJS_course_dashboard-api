@@ -1,19 +1,24 @@
 import { NextFunction, Request, Response } from "express";
 import { BaseController } from "../common/base.controller";
 import { LoggerService } from "../service/logger.service";
+import { HTTPError } from "../errors/http-error.class";
 
 export class UserController extends BaseController {
 	constructor(logger: LoggerService) {
 		super(logger);
 		this.bindRoutes([
+			{ path: "/", method: "get", func: this.usersHome },
 			{ path: "/register", method: "post", func: this.register },
 			{ path: "/login", method: "post", func: this.login },
 		]);
 	}
 	login(req: Request, res: Response, next: NextFunction) {
-		this.ok(res, "login");
+		next(new HTTPError(401, "Ошибка Авторизации"));
 	}
 	register(req: Request, res: Response, next: NextFunction) {
 		this.ok(res, "register");
+	}
+	usersHome(req: Request, res: Response, next: NextFunction) {
+		this.ok(res, "Home Page");
 	}
 }

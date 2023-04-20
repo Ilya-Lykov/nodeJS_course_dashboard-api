@@ -29,6 +29,7 @@ export abstract class BaseController {
 			this.logger.log(`[${route.method}] ${route.path}`);
 			const handler = route.func.bind(this);
 			this.router[route.method](route.path, handler);
+			// this.router[route.method](route.path, route.func);
 		}
 	}
 }
