@@ -1,6 +1,5 @@
 import express from "express";
 
-
 const usersRouter = express.Router();
 
 usersRouter.use((req, res, next) => {
