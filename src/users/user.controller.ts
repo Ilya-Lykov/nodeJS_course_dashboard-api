@@ -24,6 +24,6 @@ export class UserController extends BaseController implements IUserController {
 		this.ok(res, 'register');
 	}
 	usersHome(req: Request, res: Response, next: NextFunction): void {
-		this.ok(res, 'Home Page');
+		this.ok(res, 'Hello World from Users Router!!!');
 	}
 }
