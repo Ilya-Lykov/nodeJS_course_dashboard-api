@@ -1,11 +1,12 @@
 import { NextFunction, Request, Response } from 'express';
 import { BaseController } from '../common/base.controller';
-import { HTTPError } from '../errors/http-error.class';
 import { injectable, inject } from 'inversify';
 import { TYPES } from '../types';
 import { ILogger } from '../service/logger.interface';
 import 'reflect-metadata';
 import { IUserController } from './user.controller.inteface';
+import { UserLoginDto } from './dto/user-login.dto';
+import { UserRegisterDto } from './dto/user-register.dto';
 
 @injectable()
 export class UserController extends BaseController implements IUserController {
@@ -17,10 +18,12 @@ export class UserController extends BaseController implements IUserController {
 			{ path: '/login', method: 'post', func: this.login },
 		]);
 	}
-	login(req: Request, res: Response, next: NextFunction): void {
+	login(req: Request<{}, {}, UserLoginDto>, res: Response, next: NextFunction): void {
+		console.log(req.body);
 		this.ok(res, 'login');
 	}
-	register(req: Request, res: Response, next: NextFunction): void {
+	register(req: Request<{}, {}, UserRegisterDto>, res: Response, next: NextFunction): void {
+		console.log(req.body);
 		this.ok(res, 'register');
 	}
 	usersHome(req: Request, res: Response, next: NextFunction): void {
