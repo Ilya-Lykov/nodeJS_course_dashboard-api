@@ -9,6 +9,7 @@ import { IUserController } from './users/user.controller.inteface';
 import { IExceptionFilter } from './errors/exception.filter.interface';
 import { IConfigService } from './config/config.service.interface';
 import { UserController } from './users/user.controller';
+import { PrismaService } from './database/prisma.service';
 
 @injectable()
 export class App {
@@ -21,6 +22,7 @@ export class App {
 		@inject(TYPES.UserController) private userController: UserController,
 		@inject(TYPES.ExceptionFilter) private exceptionFilter: IExceptionFilter,
 		@inject(TYPES.ConfigService) private configService: IConfigService,
+		@inject(TYPES.PrismaService) private prismaService: PrismaService,
 	) {
 		this.app = express();
 		this.port = 8080;
@@ -40,6 +42,7 @@ export class App {
 		this.useMiddlevare();
 		this.useRoutes();
 		this.useExceptionFilters();
+		await this.prismaService.connect();
 		this.server = this.app.listen(this.port);
 		this.logger.log(`Сервер запущен на http://localhost:${this.port}`);
 	}
