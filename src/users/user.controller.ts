@@ -7,7 +7,6 @@ import 'reflect-metadata';
 import { IUserController } from './user.controller.inteface';
 import { UserLoginDto } from './dto/user-login.dto';
 import { UserRegisterDto } from './dto/user-register.dto';
-import { User } from './user.entity';
 import { UserService } from './dto/users.service';
 import { HTTPError } from '../errors/http-error.class';
 
