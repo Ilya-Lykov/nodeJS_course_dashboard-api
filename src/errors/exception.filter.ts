@@ -12,7 +12,7 @@ export class ExceptionFilter implements IExceptionFilter {
 
 	catch(err: Error | HTTPError, req: Request, res: Response, next: NextFunction): void {
 		if (err instanceof HTTPError) {
-			this.logger.error(`[${err.context}] ${err.message} : ${err.message}`);
+			this.logger.error(`[${err.context}] ${err.statusCode} : ${err.message}`);
 			res.status(err.statusCode).send({ err: err.message });
 		} else {
 			this.logger.error(`${err.message}`);
