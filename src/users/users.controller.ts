@@ -4,10 +4,10 @@ import { injectable, inject } from 'inversify';
 import { TYPES } from '../types';
 import { ILogger } from '../service/logger.interface';
 import 'reflect-metadata';
-import { IUserController } from './user.controller.inteface';
-import { UserLoginDto } from './dto/user-login.dto';
-import { UserRegisterDto } from './dto/user-register.dto';
-import { UserService } from './dto/users.service';
+import { IUserController } from './users.controller.inteface';
+import { UserLoginDto } from './dto/users-login.dto';
+import { UserRegisterDto } from './dto/users-register.dto';
+import { UserService } from './users.service';
 import { HTTPError } from '../errors/http-error.class';
 import { ValidateMiddleWare } from '../common/validate.middleware';
 
@@ -42,7 +42,7 @@ export class UserController extends BaseController implements IUserController {
 		if (!result) {
 			return next(new HTTPError(422, 'Такой пользователя уже существует'));
 		}
-		this.ok(res, { email: result.email, name: result.name });
+		this.ok(res, { email: result.email, id: result.id });
 	}
 	usersHome(req: Request, res: Response, next: NextFunction): void {
 		this.ok(res, 'Hello World from Users Router!!!');

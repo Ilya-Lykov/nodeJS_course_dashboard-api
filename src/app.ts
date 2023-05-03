@@ -5,10 +5,10 @@ import { injectable, inject } from 'inversify';
 import { TYPES } from './types';
 import { json } from 'body-parser';
 import 'reflect-metadata';
-import { IUserController } from './users/user.controller.inteface';
+import { IUserController } from './users/users.controller.inteface';
 import { IExceptionFilter } from './errors/exception.filter.interface';
 import { IConfigService } from './config/config.service.interface';
-import { UserController } from './users/user.controller';
+import { UserController } from './users/users.controller';
 import { PrismaService } from './database/prisma.service';
 
 @injectable()
