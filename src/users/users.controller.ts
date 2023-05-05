@@ -40,12 +40,10 @@ export class UserController extends BaseController implements IUserController {
 		next: NextFunction,
 	): Promise<void> {
 		const result = await this.userService.validateUser(body);
-		console.log(body);
-		console.log(result);
 		if (!result) {
-			return next(new HTTPError(200, 'Неверный логин и пароль'));
+			return next(new HTTPError(401, 'Неверный логин и пароль'));
 		}
-		this.ok(res, 'Accsess granted');
+		this.ok(res, 'Access granted');
 	}
 	async register(
 		{ body }: Request<{}, {}, UserRegisterDto>,

@@ -31,12 +31,10 @@ export class UserService implements IUserService {
 
 	async validateUser({ email, password }: UserLoginDto): Promise<boolean> {
 		const existedUser = await this.usersRepository.find(email);
-		console.log(existedUser);
 		if (!existedUser) {
 			return false;
 		}
-		const result = await compare(existedUser.password, this.configService.get('SALT'));
-
-		return result;
+		const newUser = new User(existedUser.email, existedUser.name, existedUser.password);
+		return newUser.comaparePassword(password);
 	}
 }
