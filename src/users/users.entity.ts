@@ -28,7 +28,7 @@ export class User {
 		this._password = await hash(pass, salt);
 	}
 
-	public async comaparePassword(pass: string): Promise<boolean> {
+	public async comparePassword(pass: string): Promise<boolean> {
 		return compare(pass, this._password);
 	}
 }
